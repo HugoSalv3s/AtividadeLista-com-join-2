@@ -300,11 +300,11 @@ left join pedido
 on pedido.idCliente = cliente.id order by pedido.IdPedido;
 
 -- 10 - Listar o nome, preço, nome da categoria e nome da marca do produto mais caro.
-select produto.nome as "Nome do Produto",  produto.preco as Valor, categoria.nome as Categoria , marca.nome as NomeMarca from produto
+select  produto.nome as "Nome do Produto",  produto.preco as Valor, categoria.nome as Categoria , marca.nome as NomeMarca from produto
 inner join categoria
 on produto.idCategoria = categoria.idCategoria
 inner join marca
-on produto.idMarca = marca.idMarca;
+on produto.idMarca = marca.idMarca order by produto.preco desc limit 1;
 
 
 -- 11 - Listar o número do pedido, valor total e nome do cliente do pedido mais caro.
@@ -312,14 +312,14 @@ select pedido.IdPedido as NumeroPedido, itens_pedido.valor_total, cliente.nome f
 inner join pedido
 on itens_pedido.idPedido = pedido.IdPedido
 inner join cliente
-on pedido.idCliente = cliente.id order by itens_pedido.valor_total desc;
+on pedido.idCliente = cliente.id order by itens_pedido.valor_total desc limit 1;
 
 -- 12 - Listar o número do pedido, valor total e nome do vendedor do pedido mais barato.
 select pedido.IdPedido as NumeroPedido, itens_pedido.valor_total, vendedor.nome from pedido
 inner join vendedor
 on pedido.idVendedor = vendedor.IdVendedor
 inner join itens_pedido
-on itens_pedido.IdPedido = pedido.IdPedido order by itens_pedido.valor_total;
+on itens_pedido.IdPedido = pedido.IdPedido order by itens_pedido.valor_total limit 1;
 
 select * from marca;
 select * from categoria;
