@@ -281,9 +281,11 @@ inner join cliente
 on pedido.idCliente = cliente.id where pedido.data_pedido like "%2016-08%";
 
 -- 7 - Listar o número do pedido, a data do pedido, nome do cliente e nome do vendedor dos pedidos com realizados no mês 07/2016.
-select pedido.idPedido as NumeroPedido, data_pedido as DataPedido, cliente.nome as NomeCliente from pedido
+select pedido.idPedido as NumeroPedido, data_pedido as DataPedido, vendedor.nome as NomeVendedor, cliente.nome as NomeCliente from pedido
 inner join cliente
-on pedido.idCliente = cliente.id where pedido.data_pedido like "%2016-07%";
+on pedido.idCliente = cliente.id
+inner join vendedor
+on pedido.idVendedor = vendedor.idVendedor where pedido.data_pedido like "%2016-07%";
 
 -- 8 - Listar os nome e preço dos produtos comprados pelo cliente de id=1
 select produto.nome  as Produto, produto.preco as PrecoProduto, cliente.nome as NomeCliente from cliente
